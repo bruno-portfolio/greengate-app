@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - GreenGate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 3rem 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .update-date {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-top: 2rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        strong {
+            color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>🔒 Política de Privacidade</h1>
+            <p>Como coletamos, usamos e protegemos seus dados</p>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="container">
+            <div class="update-date">
+                <strong>Última atualização:</strong> 25 de dezembro de 2025
+            </div>
+
+            <p>A <strong>GreenGate</strong> ("nós", "nosso") está comprometida com a proteção da privacidade e segurança dos dados de nossos usuários. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos informações quando você utiliza nossa API de validação geoespacial.</p>
+
+            <h2>1. Informações que Coletamos</h2>
+
+            <h3>1.1. Dados Técnicos</h3>
+            <p>Quando você utiliza nossa API, coletamos:</p>
+            <ul>
+                <li><strong>Geometrias GeoJSON:</strong> Coordenadas geográficas das áreas validadas</li>
+                <li><strong>Metadados de validação:</strong> Resultados, scores, sobreposições com camadas oficiais</li>
+                <li><strong>Logs de API:</strong> Timestamps, API key utilizada, endereço IP, user-agent</li>
+                <li><strong>Relatórios gerados:</strong> PDFs com mapas e estatísticas</li>
+            </ul>
+
+            <h3>1.2. Dados Opcionais Fornecidos</h3>
+            <p>Você pode opcionalmente incluir:</p>
+            <ul>
+                <li><strong>property_name (nome da propriedade):</strong> Campo de texto livre - <strong>tratado como potencialmente sensível</strong> e automaticamente redacted em verificação pública. Use apenas IDs anônimos (ex: "Farm #12345").</li>
+                <li><strong>metadata:</strong> Código CAR (Cadastro Ambiental Rural) e IDs internos de referência.</li>
+            </ul>
+
+            <div class="alert warning" style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; margin: 1rem 0;">
+                <p><strong>⚠️ IMPORTANTE - CAMPOS DE TEXTO LIVRE SÃO TRATADOS COMO POTENCIALMENTE SENSÍVEIS:</strong></p>
+                <p>GreenGate NÃO processa e NÃO aceita dados pessoais sensíveis (CPF, CNPJ, nomes de proprietários, endereços residenciais, etc). O campo <code>property_name</code> é de texto livre e portanto tratado como potencialmente sensível - será <strong>automaticamente redacted para [REDACTED]</strong> em verificação pública.</p>
+                <p><strong>Use apenas:</strong> IDs internos anônimos (ex: "Farm #12345", "Property A"). Envio de dados pessoais reais viola nossa Política de Privacidade e pode resultar em suspensão de conta.</p>
+            </div>
+
+            <h3>1.3. Dados de Contato</h3>
+            <p>Ao solicitar acesso à API, coletamos:</p>
+            <ul>
+                <li>Nome e email corporativo</li>
+                <li>Nome da empresa</li>
+                <li>Telefone (opcional)</li>
+            </ul>
+
+            <h2>2. Como Usamos as Informações</h2>
+
+            <h3>2.1. Finalidades</h3>
+            <ul>
+                <li><strong>Processar validações:</strong> Executar análises geoespaciais e gerar relatórios</li>
+                <li><strong>Auditoria e rastreabilidade:</strong> Garantir verificação pública via QR Code</li>
+                <li><strong>Suporte técnico:</strong> Diagnosticar erros e melhorar performance</li>
+                <li><strong>Segurança:</strong> Detectar e prevenir uso indevido da API</li>
+                <li><strong>Faturamento:</strong> Calcular uso mensal por API key</li>
+                <li><strong>Conformidade:</strong> Atender obrigações legais e regulatórias</li>
+            </ul>
+
+            <h3>2.2. Base Legal (LGPD)</h3>
+            <p>Processamos seus dados com base em:</p>
+            <ul>
+                <li><strong>Execução de contrato:</strong> Prestação do serviço de validação (Art. 7º, V)</li>
+                <li><strong>Legítimo interesse:</strong> Segurança, auditoria e melhoria do serviço (Art. 7º, IX)</li>
+                <li><strong>Obrigação legal:</strong> Retenção para fins fiscais (Art. 7º, II)</li>
+            </ul>
+
+            <h2>3. Compartilhamento de Dados</h2>
+
+            <h3>3.1. Não Vendemos Seus Dados</h3>
+            <p>A GreenGate <strong>nunca vende</strong> dados de clientes a terceiros.</p>
+
+            <h3>3.2. Compartilhamento Limitado</h3>
+            <p>Podemos compartilhar dados apenas com:</p>
+            <ul>
+                <li><strong>Provedores de infraestrutura:</strong> Railway (hosting), Supabase (banco de dados) - sujeitos a DPA (Data Processing Agreement)</li>
+                <li><strong>Autoridades:</strong> Quando legalmente obrigados (ordem judicial, CVM, etc)</li>
+            </ul>
+
+            <h3>3.3. Verificação Pública (Dois Níveis)</h3>
+            <p>Para proteger confidencialidade comercial e privacidade, implementamos verificação em dois níveis:</p>
+
+            <h4 style="font-size: 1.1rem; margin-top: 1rem;">Nível 1: Verificação Pública (sem autenticação)</h4>
+            <p>Relatórios verificados via QR Code expõem apenas informações mínimas:</p>
+            <ul>
+                <li><strong>Nome da propriedade:</strong> SEMPRE redacted como <code>[REDACTED]</code> - tratado como potencialmente sensível</li>
+                <li>Score de risco (0-100)</li>
+                <li>Data de validação</li>
+                <li>Status de verificação (válido/inválido)</li>
+            </ul>
+
+            <h4 style="font-size: 1.1rem; margin-top: 1rem;">Nível 2: Verificação Completa (requer API key)</h4>
+            <p>Detalhes completos disponíveis apenas com autenticação via API key do cliente:</p>
+            <ul>
+                <li>Nome da propriedade (se fornecido)</li>
+                <li>Link para download do PDF (assinado digitalmente, expira em 7 dias)</li>
+                <li>Metadados completos (CAR, IDs internos)</li>
+            </ul>
+
+            <p><strong>Importante:</strong> Códigos de relatório usam formato criptograficamente seguro de alta entropia (GG-{16+ chars random}) para prevenir ataques de enumeração. Endpoint público tem rate limiting agressivo.</p>
+
+            <h2>4. Armazenamento e Retenção</h2>
+
+            <h3>4.1. Período de Retenção</h3>
+            <ul>
+                <li><strong>Validações ativas:</strong> Mantidas enquanto o QR Code precisar permanecer válido para fins de auditoria pública e rastreabilidade. Você pode solicitar exclusão a qualquer momento, ciente de que o relatório PDF e QR Code deixarão de funcionar.</li>
+                <li><strong>Logs de API:</strong> 12 meses</li>
+                <li><strong>Dados de faturamento:</strong> 5 anos (obrigação fiscal - Art. 174 do Código Tributário Nacional)</li>
+            </ul>
+
+            <h3>4.2. Localização dos Dados</h3>
+            <p>Dados armazenados em servidores localizados nos <strong>Estados Unidos</strong> (Railway/Supabase), com backups diários criptografados.</p>
+
+            <h2>5. Segurança</h2>
+
+            <h3>5.1. Medidas Técnicas</h3>
+            <ul>
+                <li><strong>Criptografia:</strong> TLS 1.3 em trânsito, AES-256 em repouso</li>
+                <li><strong>Autenticação:</strong> API keys com bcrypt hash</li>
+                <li><strong>Rate limiting:</strong> Proteção contra abuso (100 req/min)</li>
+                <li><strong>Firewall:</strong> IPs suspeitos bloqueados automaticamente</li>
+                <li><strong>Backups:</strong> Replicação diária em múltiplas zonas</li>
+            </ul>
+
+            <h3>5.2. Acesso Restrito</h3>
+            <p>Apenas 2 engenheiros autorizados têm acesso direto ao banco de produção, com logs de auditoria.</p>
+
+            <h2>6. Seus Direitos (LGPD)</h2>
+
+            <p>Você tem direito a:</p>
+            <ul>
+                <li><strong>Acesso:</strong> Solicitar cópia de todas as validações da sua API key</li>
+                <li><strong>Correção:</strong> Atualizar metadados incorretos</li>
+                <li><strong>Exclusão:</strong> Deletar validações específicas (QR Code deixará de funcionar)</li>
+                <li><strong>Portabilidade:</strong> Exportar dados em JSON</li>
+                <li><strong>Oposição:</strong> Contestar processamento baseado em legítimo interesse</li>
+            </ul>
+
+            <p><strong>Para exercer seus direitos:</strong> Email para <a href="mailto:greengatebrasil@gmail.com">greengatebrasil@gmail.com</a> com assunto "LGPD - [Direito solicitado]"</p>
+
+            <h2>7. Cookies e Rastreamento</h2>
+
+            <h3>7.1. API REST</h3>
+            <p>Nossa API <strong>não usa cookies</strong>. Autenticação via header <code>x-api-key</code>.</p>
+
+            <h3>7.2. Site (www.greengate.com.br)</h3>
+            <p>Usamos apenas:</p>
+            <ul>
+                <li><strong>localStorage:</strong> Preferência de idioma (PT/EN) e tema (claro/escuro)</li>
+                <li><strong>Sem analytics:</strong> Não usamos Google Analytics ou similares</li>
+            </ul>
+
+            <h2>8. Transferência Internacional</h2>
+
+            <p>Dados podem ser transferidos para EUA (Railway, Supabase). Garantimos:</p>
+            <ul>
+                <li>Conformidade com cláusulas contratuais padrão (SCC)</li>
+                <li>Provedor certificado SOC 2 Type II</li>
+                <li>Direito de portabilidade sempre disponível</li>
+            </ul>
+
+            <h2>9. Privacidade de Menores</h2>
+
+            <p>Não coletamos intencionalmente dados de menores de 18 anos. Nosso serviço é B2B para empresas.</p>
+
+            <h2>10. Alterações nesta Política</h2>
+
+            <p>Podemos atualizar esta política periodicamente. Notificaremos via email com 30 dias de antecedência sobre mudanças materiais.</p>
+
+            <h2>11. Contato do Encarregado (DPO)</h2>
+
+            <p>Para questões sobre privacidade:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:greengatebrasil@gmail.com">greengatebrasil@gmail.com</a></li>
+                <li><strong>Assunto:</strong> "DPO - Privacidade"</li>
+                <li><strong>Resposta em:</strong> Até 15 dias úteis</li>
+            </ul>
+
+            <h2>12. Autoridade Supervisora</h2>
+
+            <p>Você pode registrar reclamações junto à <strong>ANPD</strong> (Autoridade Nacional de Proteção de Dados):</p>
+            <ul>
+                <li>Site: <a href="https://www.gov.br/anpd" target="_blank">www.gov.br/anpd</a></li>
+                <li>Email: anpd@anpd.gov.br</li>
+            </ul>
+
+            <a href="../index.html" class="btn">← Voltar para Home</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GreenGate. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

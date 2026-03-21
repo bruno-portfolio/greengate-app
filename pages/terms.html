@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Uso - GreenGate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 3rem 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .update-date {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .alert {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-top: 2rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        strong {
+            color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>📜 Termos de Uso</h1>
+            <p>Condições de uso da API GreenGate</p>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="container">
+            <div class="update-date">
+                <strong>Última atualização:</strong> 25 de dezembro de 2025
+            </div>
+
+            <p>Estes Termos de Uso ("Termos") regem o acesso e uso da API de validação geoespacial GreenGate ("Serviço"). Ao utilizar nossa API, você ("Cliente", "você") concorda integralmente com estes Termos.</p>
+
+            <h2>1. Aceitação dos Termos</h2>
+
+            <p>Ao solicitar uma API key ou fazer sua primeira requisição, você declara:</p>
+            <ul>
+                <li>Ter lido e compreendido estes Termos</li>
+                <li>Ter capacidade legal para contratar (pessoa física maior de 18 anos ou pessoa jurídica regularizada)</li>
+                <li>Que as informações fornecidas no cadastro são verdadeiras</li>
+            </ul>
+
+            <h2>2. Descrição do Serviço</h2>
+
+            <h3>2.1. O que Oferecemos</h3>
+            <p>A GreenGate fornece uma <strong>API REST</strong> para validação geoespacial de áreas rurais brasileiras contra 6 camadas oficiais:</p>
+            <ol>
+                <li>PRODES (INPE) - Desmatamento</li>
+                <li>Terras Indígenas (FUNAI)</li>
+                <li>Unidades de Conservação (ICMBio)</li>
+                <li>Embargos IBAMA</li>
+                <li>Territórios Quilombolas (INCRA)</li>
+                <li>Amazônia Legal</li>
+            </ol>
+
+            <h3>2.2. O que NÃO Somos</h3>
+            <div class="alert">
+                <strong>⚠️ IMPORTANTE:</strong> A GreenGate é uma <strong>ferramenta técnica de análise geoespacial</strong>. NÃO somos:
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>Certificadora ambiental</li>
+                    <li>Auditoria independente</li>
+                    <li>Substituto de consultoria jurídica ou ambiental</li>
+                    <li>Garantia de conformidade EUDR ou legislação brasileira</li>
+                </ul>
+            </div>
+
+            <h2>3. Licença e Acesso</h2>
+
+            <h3>3.1. Concessão de Licença</h3>
+            <p>Concedemos a você uma licença <strong>não exclusiva, não transferível e revogável</strong> para usar a API conforme estes Termos.</p>
+
+            <h3>3.2. API Key</h3>
+            <ul>
+                <li>Cada API key é pessoal e intransferível</li>
+                <li>Você é responsável por manter sua API key segura</li>
+                <li>Notifique-nos imediatamente em caso de comprometimento</li>
+                <li>Podemos revogar API keys suspeitas de abuso</li>
+            </ul>
+
+            <h3>3.3. Uso Permitido</h3>
+            <p>Você pode usar a API para:</p>
+            <ul>
+                <li>Validação interna de propriedades rurais</li>
+                <li>Due diligence de fornecedores</li>
+                <li>Geração de relatórios de conformidade</li>
+                <li>Integração em sistemas corporativos (ERP, CRM)</li>
+            </ul>
+
+            <h3>3.4. Uso Proibido</h3>
+            <p>É <strong>estritamente proibido</strong>:</p>
+            <ul>
+                <li>Revenda ou sublicenciamento da API</li>
+                <li>Engenharia reversa do algoritmo de score</li>
+                <li>Scraping ou download em massa de dados públicos</li>
+                <li>Tentativas de burlar rate limits</li>
+                <li>Uso para fins ilegais ou fraudulentos</li>
+                <li>Sobrecarga intencional do serviço (DDoS)</li>
+            </ul>
+
+            <h2>4. Preços e Pagamento</h2>
+
+            <h3>4.1. Modelo de Cobrança</h3>
+            <p>Os preços são cobrados <strong>por validação completada com sucesso</strong> (status 200 OK), conforme:</p>
+            <ul>
+                <li>Tabela de preços vigente publicada em <a href="https://www.greengate.com.br">www.greengate.com.br</a>, ou</li>
+                <li>Proposta comercial acordada entre as partes por escrito</li>
+            </ul>
+
+            <h3>4.2. Faturamento</h3>
+            <ul>
+                <li><strong>Ciclo:</strong> Mensal (1º dia de cada mês)</li>
+                <li><strong>Forma de pagamento:</strong> Boleto ou PIX (parcelamento sob consulta)</li>
+                <li><strong>Vencimento:</strong> 10 dias após emissão da nota fiscal</li>
+            </ul>
+
+            <h3>4.3. Inadimplência</h3>
+            <p>Atraso superior a 15 dias:</p>
+            <ul>
+                <li>Suspensão automática da API key</li>
+                <li>Juros de 1% ao mês + multa de 2%</li>
+                <li>Possível inclusão em cadastros de proteção ao crédito (SPC/Serasa)</li>
+            </ul>
+
+            <h3>4.4. Cancelamento</h3>
+            <p>Você pode cancelar a qualquer momento via email. Não há reembolso proporcional para validações já faturadas.</p>
+
+            <h2>5. Disponibilidade e SLA</h2>
+
+            <h3>5.1. Uptime</h3>
+            <p><strong>Meta:</strong> 99.5% de disponibilidade mensal (excluindo manutenções programadas).</p>
+
+            <h3>5.2. Manutenções</h3>
+            <ul>
+                <li><strong>Programadas:</strong> Notificadas com 48h de antecedência via email</li>
+                <li><strong>Emergenciais:</strong> Sem aviso prévio</li>
+                <li><strong>Janela típica:</strong> Domingos 2h-6h (horário de Brasília)</li>
+            </ul>
+
+            <h3>5.3. Sem Garantia de Performance</h3>
+            <p>Embora nossa meta seja &lt;2 minutos por validação, não garantimos tempo de resposta fixo. Fatores externos (latência de rede, geometrias complexas) podem afetar performance.</p>
+
+            <h2>6. Limitações de Responsabilidade</h2>
+
+            <h3>6.1. Precisão dos Dados</h3>
+            <p>Fazemos validações baseadas em <strong>dados públicos oficiais</strong> (INPE, FUNAI, IBAMA, etc). Não garantimos:</p>
+            <ul>
+                <li>Atualização em tempo real (sincronizamos mensalmente)</li>
+                <li>Ausência de erros nas fontes governamentais</li>
+                <li>Conformidade absoluta com EUDR ou legislação futura</li>
+            </ul>
+
+            <h3>6.2. Exclusão de Garantias</h3>
+            <p>O Serviço é fornecido "<strong>como está</strong>" (as-is). Não garantimos:</p>
+            <ul>
+                <li>Adequação a finalidades específicas</li>
+                <li>Resultados comerciais ou aceitação por terceiros</li>
+                <li>Compatibilidade com todos os sistemas</li>
+            </ul>
+
+            <h3>6.3. Limite de Indenização</h3>
+            <p>Nossa responsabilidade total por danos (diretos ou indiretos) está limitada ao <strong>valor pago nos últimos 3 meses</strong>.</p>
+
+            <p><strong>Não nos responsabilizamos por:</strong></p>
+            <ul>
+                <li>Lucros cessantes</li>
+                <li>Perda de oportunidades comerciais</li>
+                <li>Danos reputacionais</li>
+                <li>Decisões tomadas com base nos relatórios</li>
+            </ul>
+
+            <h2>7. Propriedade Intelectual</h2>
+
+            <h3>7.1. Nossa Propriedade</h3>
+            <p>Mantemos todos os direitos sobre:</p>
+            <ul>
+                <li>Código-fonte da API</li>
+                <li>Algoritmo de score de risco</li>
+                <li>Marca "GreenGate" e logotipo</li>
+                <li>Documentação e materiais de marketing</li>
+            </ul>
+
+            <h3>7.2. Seus Dados</h3>
+            <p>Você mantém propriedade das geometrias enviadas. Concedemos a nós uma licença não exclusiva para processá-las e armazená-las para fins de auditoria.</p>
+
+            <h2>8. Confidencialidade</h2>
+
+            <h3>8.1. Informações Confidenciais</h3>
+            <p>Ambas as partes se comprometem a não divulgar:</p>
+            <ul>
+                <li>Detalhes técnicos da API (algoritmos, infraestrutura)</li>
+                <li>Preços customizados</li>
+                <li>Dados de validações de terceiros</li>
+            </ul>
+
+            <h3>8.2. Exceções</h3>
+            <p>Não se aplica a informações:</p>
+            <ul>
+                <li>Já públicas</li>
+                <li>Obtidas legalmente de terceiros</li>
+                <li>Exigidas por ordem judicial</li>
+            </ul>
+
+            <h2>9. Modificações</h2>
+
+            <h3>9.1. Alterações nos Termos</h3>
+            <p>Podemos atualizar estes Termos mediante:</p>
+            <ul>
+                <li><strong>Aviso prévio:</strong> 30 dias via email</li>
+                <li><strong>Versão publicada:</strong> Em www.greengate.com.br/terms.html</li>
+            </ul>
+            <p>Uso contínuo após prazo = aceitação tácita.</p>
+
+            <h3>9.2. Alterações na API</h3>
+            <p>Podemos adicionar/remover funcionalidades com 15 dias de aviso. Mudanças breaking (que quebram integrações) terão 60 dias de transição.</p>
+
+            <h2>10. Rescisão</h2>
+
+            <h3>10.1. Por Você</h3>
+            <p>Cancele a qualquer momento via email. API key desativada em até 24h.</p>
+
+            <h3>10.2. Por Nós</h3>
+            <p>Podemos suspender/cancelar imediatamente se:</p>
+            <ul>
+                <li>Violação destes Termos</li>
+                <li>Inadimplência &gt; 30 dias</li>
+                <li>Uso fraudulento ou ilegal</li>
+                <li>Ordem judicial</li>
+            </ul>
+
+            <h3>10.3. Efeitos da Rescisão</h3>
+            <ul>
+                <li>API key permanentemente revogada</li>
+                <li>Acesso aos relatórios mantido por 90 dias (para download)</li>
+                <li>Obrigações financeiras permanecem</li>
+            </ul>
+
+            <h2>11. Lei Aplicável e Foro</h2>
+
+            <p>Estes Termos são regidos pela legislação brasileira. Disputas serão resolvidas no foro da comarca de <strong>São Paulo/SP</strong>, com exclusão de qualquer outro.</p>
+
+            <h2>12. Contato</h2>
+
+            <p>Dúvidas sobre estes Termos:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:greengatebrasil@gmail.com">greengatebrasil@gmail.com</a></li>
+                <li><strong>Assunto:</strong> "Termos de Uso"</li>
+            </ul>
+            <p><em>Canal oficial para questões legais e contratuais.</em></p>
+
+            <h2>13. Disposições Finais</h2>
+
+            <h3>13.1. Integridade</h3>
+            <p>Se alguma cláusula for considerada inválida, as demais permanecem em vigor.</p>
+
+            <h3>13.2. Renúncia</h3>
+            <p>Tolerância quanto a violações não constitui renúncia de direitos.</p>
+
+            <h3>13.3. Cessão</h3>
+            <p>Você não pode ceder seus direitos sem nossa autorização prévia por escrito.</p>
+
+            <a href="../index.html" class="btn">← Voltar para Home</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GreenGate. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

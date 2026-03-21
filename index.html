@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGate — Validacao Geoespacial Ambiental</title>
+    <meta name="description" content="Motor de validacao geoespacial que cruza parcelas rurais contra 6 bases ambientais oficiais brasileiras. Resultado em menos de 2 minutos.">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRCHQBJEP1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JRCHQBJEP1');
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #111118;
+            --bg-card: #16161f;
+            --bg-elevated: #1c1c28;
+            --border: #2a2a3a;
+            --border-hover: #3a3a4a;
+
+            --accent: #34d399;
+            --accent-dim: rgba(52, 211, 153, 0.15);
+            --accent-glow: rgba(52, 211, 153, 0.3);
+
+            --text-primary: #f5f5f4;
+            --text-secondary: #b5b5b5;
+            --text-muted: #7a7a8a;
+
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- NAV ---- */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            transition: all 0.4s var(--ease);
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s var(--ease);
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .nav-lang {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            transition: all 0.3s var(--ease);
+        }
+
+        .nav-lang:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            font-family: var(--font-mono) !important;
+            font-size: 0.8rem !important;
+            color: var(--accent) !important;
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1.25rem;
+            border-radius: 4px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .nav-cta:hover { background: var(--accent-dim); }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                url('https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1920&q=80')
+                center / cover no-repeat;
+            animation: heroZoom 25s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg,
+                    rgba(10,10,15,0.85) 0%,
+                    rgba(10,10,15,0.6) 35%,
+                    rgba(10,10,15,0.9) 100%
+                );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max-width);
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease) 0.5s forwards;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: #d4d4d4;
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease) 0.7s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease) 0.9s forwards;
+        }
+
+        .btn-primary {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--bg-deep);
+            background: var(--accent);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        .btn-outline {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 20px;
+            height: 32px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease) 1.2s forwards;
+        }
+
+        .hero-scroll::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            animation: scrollPulse 2s var(--ease) infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.3; transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ---- SECTIONS ---- */
+        section { padding: clamp(4rem, 8vw, 7rem) 2rem; }
+
+        .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin-bottom: 3rem;
+        }
+
+        /* ---- STATS ---- */
+        .stats {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-surface);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* ---- FEATURES ---- */
+        .features { background: var(--bg-deep); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s var(--ease);
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-dim);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ---- SOURCES ---- */
+        .sources { background: var(--bg-surface); }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .source-item {
+            background: var(--bg-card);
+            padding: 1.5rem 1.75rem;
+            transition: background 0.3s var(--ease);
+        }
+
+        .source-item:hover { background: var(--bg-elevated); }
+
+        .source-name {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .source-org {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .source-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ---- METHODOLOGY ---- */
+        .methodology { background: var(--bg-deep); }
+
+        .method-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .method-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .method-step-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .method-step-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .method-arrow {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        /* ---- CTA ---- */
+        .cta {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta .section-title { margin-bottom: 0.75rem; }
+        .cta .section-desc { margin: 0 auto 2rem; }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .footer-brand span { color: var(--accent); }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s var(--ease);
+        }
+
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ---- ANIMATIONS ---- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s var(--ease);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .sources-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .nav { padding: 1rem 1.25rem; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a.nav-link-text { display: none; }
+
+            .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+
+            .method-flow { flex-direction: column; }
+            .method-arrow { transform: rotate(90deg); }
+
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+
+        @media (max-width: 380px) {
+            .hero h1 { font-size: 1.75rem; }
+            .stat-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Green<span>Gate</span></a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link-text" data-i18n="nav_features">Funcionalidades</a>
+                <a href="#sources" class="nav-link-text" data-i18n="nav_sources">Fontes</a>
+                <a href="pages/docs.html" class="nav-link-text" data-i18n="nav_docs">Docs</a>
+                <button class="nav-lang" id="langToggle"><span id="langText">PT</span></button>
+                <a href="https://app.greengate.com.br" class="nav-cta" target="_blank" data-i18n="nav_cta">Acessar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-label" data-i18n="hero_label">Validacao geoespacial ambiental</p>
+            <h1 data-i18n="hero_title">Cruze parcelas rurais contra bases ambientais oficiais</h1>
+            <p data-i18n="hero_desc">Motor de validacao que verifica sobreposicao com areas protegidas, desmatamento, embargos e terras indigenas. Resultado em menos de 2 minutos.</p>
+            <div class="hero-actions">
+                <a href="https://app.greengate.com.br" class="btn-primary" target="_blank" data-i18n="hero_cta">Comecar agora</a>
+                <a href="pages/docs.html" class="btn-outline" data-i18n="hero_docs">Documentacao</a>
+            </div>
+        </div>
+        <div class="hero-scroll"></div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="section-inner">
+            <div class="stats-grid">
+                <div class="reveal">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label" data-i18n="stat_layers">Camadas oficiais</div>
+                </div>
+                <div class="reveal">
+                    <div class="stat-number">&lt; 2 min</div>
+                    <div class="stat-label" data-i18n="stat_time">Tempo de validacao</div>
+                </div>
+                <div class="reveal">
+                    <div class="stat-number">PDF</div>
+                    <div class="stat-label" data-i18n="stat_report">Relatorio auditavel</div>
+                </div>
+                <div class="reveal">
+                    <div class="stat-number">API</div>
+                    <div class="stat-label" data-i18n="stat_api">REST integravel</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-inner">
+            <span class="section-label" data-i18n="features_label">Funcionalidades</span>
+            <h2 class="section-title" data-i18n="features_title">Infraestrutura de conformidade</h2>
+            <p class="section-desc" data-i18n="features_desc">Validacao deterministica contra bases oficiais. Mesma area, mesma data, mesmo resultado.</p>
+
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 data-i18n="feat1_title">Resultado reproduzivel</h3>
+                    <p data-i18n="feat1_desc">Validacoes deterministicas sem margem para interpretacao. Auditavel por terceiros.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    </div>
+                    <h3 data-i18n="feat2_title">Validacao geometrica</h3>
+                    <p data-i18n="feat2_desc">Poligonos invalidos detectados e corrigidos automaticamente via PostGIS antes do cruzamento.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3 data-i18n="feat3_title">Relatorio PDF</h3>
+                    <p data-i18n="feat3_desc">Documento auditavel com QR Code para verificacao publica. Pronto para due diligence.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3 data-i18n="feat4_title">Fontes rastreavies</h3>
+                    <p data-i18n="feat4_desc">Todas as camadas provem de orgaos oficiais: INPE, FUNAI, IBAMA, ICMBio, INCRA.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3 data-i18n="feat5_title">API REST</h3>
+                    <p data-i18n="feat5_desc">Integre validacao ambiental ao seu sistema. JSON in, JSON + PDF out.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3 data-i18n="feat6_title">Criptografia e auditoria</h3>
+                    <p data-i18n="feat6_desc">Dados sensiveis criptografados em repouso. Trilha de auditoria com hashes criptograficos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-inner">
+            <span class="section-label" data-i18n="sources_label">Fontes de dados</span>
+            <h2 class="section-title" data-i18n="sources_title">Camadas oficiais integradas</h2>
+            <p class="section-desc" data-i18n="sources_desc">Integracao direta com bases governamentais brasileiras.</p>
+
+            <div class="sources-grid">
+                <div class="source-item reveal">
+                    <div class="source-org">INPE</div>
+                    <div class="source-name" data-i18n="src1_name">PRODES</div>
+                    <div class="source-desc" data-i18n="src1_desc">Desmatamento na Amazonia Legal</div>
+                </div>
+                <div class="source-item reveal">
+                    <div class="source-org">FUNAI</div>
+                    <div class="source-name" data-i18n="src2_name">Terras Indigenas</div>
+                    <div class="source-desc" data-i18n="src2_desc">Demarcacoes homologadas e em processo</div>
+                </div>
+                <div class="source-item reveal">
+                    <div class="source-org">ICMBio</div>
+                    <div class="source-name" data-i18n="src3_name">Unidades de Conservacao</div>
+                    <div class="source-desc" data-i18n="src3_desc">Protecao integral e uso sustentavel</div>
+                </div>
+                <div class="source-item reveal">
+                    <div class="source-org">IBAMA</div>
+                    <div class="source-name" data-i18n="src4_name">Embargos Ambientais</div>
+                    <div class="source-desc" data-i18n="src4_desc">Areas com restricao ambiental ativa</div>
+                </div>
+                <div class="source-item reveal">
+                    <div class="source-org">INCRA</div>
+                    <div class="source-name" data-i18n="src5_name">Territorios Quilombolas</div>
+                    <div class="source-desc" data-i18n="src5_desc">Comunidades tradicionais tituladas</div>
+                </div>
+                <div class="source-item reveal">
+                    <div class="source-org" data-i18n="src6_org">Governo Federal</div>
+                    <div class="source-name" data-i18n="src6_name">Amazonia Legal</div>
+                    <div class="source-desc" data-i18n="src6_desc">Area sujeita a legislacao ambiental especial</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="methodology">
+        <div class="section-inner" style="text-align: center;">
+            <span class="section-label" data-i18n="method_label">Como funciona</span>
+            <h2 class="section-title" data-i18n="method_title">Fluxo de validacao</h2>
+
+            <div class="method-flow">
+                <div class="method-step reveal">
+                    <div class="method-step-label">Input</div>
+                    <div class="method-step-text">GeoJSON / Shapefile</div>
+                </div>
+                <div class="method-arrow reveal">&#8594;</div>
+                <div class="method-step reveal">
+                    <div class="method-step-label" data-i18n="method_process">Processamento</div>
+                    <div class="method-step-text" data-i18n="method_process_desc">PostGIS + 6 camadas</div>
+                </div>
+                <div class="method-arrow reveal">&#8594;</div>
+                <div class="method-step reveal">
+                    <div class="method-step-label">Output</div>
+                    <div class="method-step-text" data-i18n="method_output_desc">JSON + PDF auditavel</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="section-inner">
+            <h2 class="section-title" data-i18n="cta_title">Valide sua area agora</h2>
+            <p class="section-desc" data-i18n="cta_desc">Resultado em menos de 2 minutos. Sem cartao de credito para comecar.</p>
+            <div class="cta-actions">
+                <a href="https://app.greengate.com.br" class="btn-primary" target="_blank" data-i18n="cta_primary">Comecar agora</a>
+                <a href="mailto:greengatebrasil@gmail.com" class="btn-outline" data-i18n="cta_contact">Contato</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Green<span>Gate</span></div>
+            <div class="footer-links">
+                <a href="pages/docs.html" data-i18n="nav_docs">Docs</a>
+                <a href="pages/faq.html">FAQ</a>
+                <a href="pages/privacy.html" data-i18n="footer_privacy">Privacidade</a>
+                <a href="pages/terms.html" data-i18n="footer_terms">Termos</a>
+            </div>
+            <div class="footer-copy" data-i18n="footer_copy">&copy; 2026 GreenGate. Todos os direitos reservados.</div>
+        </div>
+    </footer>
+
+    <!-- Translations -->
+    <script src="js/translations.js"></script>
+    <script src="js/apply_translations.js"></script>
+
+    <script>
+        // Nav scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+</body>
+</html>
