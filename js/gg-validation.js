@@ -352,11 +352,12 @@
             if (err && err._handled) { /* already shown */ }
             else {
                 var errorMessage = err.message || '';
-                if (errorMessage.indexOf('fetch') !== -1 || errorMessage.indexOf('Failed') !== -1 || errorMessage.indexOf('NetworkError') !== -1 || errorMessage.indexOf('TypeError') !== -1) {
+                // Only treat actual network errors as connection issues
+                if (err instanceof TypeError && (errorMessage.indexOf('fetch') !== -1 || errorMessage.indexOf('Failed to fetch') !== -1 || errorMessage.indexOf('NetworkError') !== -1)) {
                     errorMessage = GG.t('error_connection');
-                    console.error('Network error details:', err);
                 }
-                GG.showToast(errorMessage);
+                console.error('Validation error:', err);
+                GG.showToast(errorMessage || GG.t('error_generic'));
             }
         }).finally(function() {
             document.getElementById('loadingOverlay').classList.remove('show');
