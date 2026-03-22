@@ -9,11 +9,11 @@ const appTranslations = {
         // Buttons
         drawBtn: 'Desenhar',
         clearBtn: 'Limpar',
-        validateBtn: '🔍 Validar Área',
-        exportBtn: '📥 Exportar GeoJSON',
-        pdfBtn: '📄 Baixar Relatório PDF',
-        confirmPdfBtn: '📄 Gerar Relatório PDF',
-        sampleBtn: '🎯 Testar com Área de Exemplo',
+        validateBtn: 'Validar Área',
+        exportBtn: 'Exportar GeoJSON',
+        pdfBtn: 'Baixar Relatório PDF',
+        confirmPdfBtn: 'Gerar Relatório PDF',
+        sampleBtn: 'Testar com Área de Exemplo',
         clearHistory: 'Limpar',
 
         // Search
@@ -25,7 +25,7 @@ const appTranslations = {
 
         // Steps
         step1Title: 'Navegue e Defina a Área',
-        step1Text: 'Use a busca, desenhe com o <strong>Lápis (✏️)</strong>, faça upload ou teste com área de exemplo. <span style="color:var(--accent-yellow); font-size:0.75rem;">Limite: 10.000 ha.</span>',
+        step1Text: 'Use a busca, desenhe com o <strong>Lápis</strong>, faça upload ou teste com área de exemplo. <span style="color:var(--accent-yellow); font-size:0.75rem;">Limite: 10.000 ha.</span>',
         step2Title: 'Validação Automática',
         step2Text: 'Clique em <strong>Validar Área</strong> para cruzamento instantâneo com 6 bases oficiais (PRODES, MapBiomas, TIs, Embargos, UCs, Quilombolas).',
         step3Title: 'Relatório PDF',
@@ -54,15 +54,11 @@ const appTranslations = {
         pdfLangEn: 'English',
 
         // Messages
-        sampleLoaded: '✨ Área de exemplo carregada! Clique em "Validar Área" para testar sem API Key.',
+        sampleLoaded: 'Área de exemplo carregada! Clique em "Validar Área" para testar sem API Key.',
         clearHistoryConfirm: 'Limpar histórico?',
         areaFileName: 'Área de Exemplo (Sinop, MT) - Validação livre',
-        overlapLabel: '📍 Área Afetada:',
+        overlapLabel: 'Área Afetada:',
 
-        // Validation results
-        statusApproved: 'APROVADO',
-        statusRejected: 'REJEITADO',
-        statusWarning: 'ATENÇÃO',
         statusProcessing: 'Validando...',
 
         // Check items
@@ -78,7 +74,7 @@ const appTranslations = {
         // Sidebar cards
         authTitle: 'Autenticação',
         apiKeyPlaceholder: 'Cole sua API Key',
-        apiKeyRequired: '✨ Explore o mapa gratuitamente! API Key necessária apenas para validar suas áreas.',
+        apiKeyRequired: 'Explore o mapa gratuitamente! API Key necessária apenas para validar suas áreas.',
         getApiKey: 'Obtenha sua chave:',
         getApiKeyFree: 'Obter API Key Grátis',
 
@@ -94,7 +90,7 @@ const appTranslations = {
         instantApiKey: 'API key instantânea',
 
         // Toast messages
-        apiKeyRequiredToast: '⚠️ API Key necessária.',
+        apiKeyRequiredToast: 'API Key necessária.',
         getApiKeyLink: 'Obter API Key Grátis →',
         uploadTitle: 'Upload de Arquivo',
         uploadText: 'Toque para selecionar',
@@ -113,7 +109,7 @@ const appTranslations = {
         historyEmpty: 'Nenhuma validação ainda',
         fillFarmPlot: 'Preencha Fazenda e Talhão',
         insertApiKey: 'Insira sua API Key para gerar o PDF',
-        pdfGenerating: '⏳ Gerando...',
+        pdfGenerating: 'Gerando...',
         pdfError: 'Erro ao gerar PDF',
         pdfSuccess: 'PDF gerado com sucesso!',
         errorUpload: 'Erro: ',
@@ -177,12 +173,22 @@ const appTranslations = {
         msg_no_overlap_uc: 'Nenhuma sobreposição com Unidade de Conservação',
 
         // PDF Modal - Privacy tip
-        privacyTipTitle: '💡 Dica de Privacidade:',
+        privacyTipTitle: 'Dica de Privacidade:',
         privacyTipText: 'Use identificadores internos (ex: "Fazenda #12345") ao invés de nomes reais. Nomes de propriedades aparecem no relatório PDF mas são redatados na verificação pública.',
-        reportIncludesQr: '📱 O relatório incluirá QR Code para verificação de autenticidade',
+        reportIncludesQr: 'O relatório incluirá QR Code para verificação de autenticidade',
+
+        // Error messages
+        rateLimitMessage: 'Aguarde {seconds} segundos entre validações',
+        error_quota_exceeded: 'Cota de validações esgotada.',
+        error_quota_contact: 'Solicitar aumento →',
+        error_invalid_key: 'API Key inválida ou expirada.',
+        error_invalid_geometry: 'Geometria inválida. Redesenhe o polígono.',
+        error_server: 'Erro no servidor. Tente novamente em instantes.',
+        error_generic: 'Erro inesperado. Tente novamente.',
+        error_connection: 'Erro de conexão. Verifique sua internet.',
 
         // Validation loading steps
-        validatingSampleArea: '🎯 Validando área de exemplo (sem API Key). Para suas áreas reais, obtenha uma chave.',
+        validatingSampleArea: 'Validando área de exemplo (sem API Key). Para suas áreas reais, obtenha uma chave.',
         stepAnalyzingProdes: 'Analisando PRODES...',
         stepCheckingMapbiomas: 'Verificando MapBiomas...',
         stepConsultingTi: 'Consultando TIs...',
@@ -199,11 +205,11 @@ const appTranslations = {
         // Buttons
         drawBtn: 'Draw',
         clearBtn: 'Clear',
-        validateBtn: '🔍 Validate Area',
-        exportBtn: '📥 Export GeoJSON',
-        pdfBtn: '📄 Download PDF Report',
-        confirmPdfBtn: '📄 Generate PDF Report',
-        sampleBtn: '🎯 Test with Sample Area',
+        validateBtn: 'Validate Area',
+        exportBtn: 'Export GeoJSON',
+        pdfBtn: 'Download PDF Report',
+        confirmPdfBtn: 'Generate PDF Report',
+        sampleBtn: 'Test with Sample Area',
         clearHistory: 'Clear',
 
         // Search
@@ -215,7 +221,7 @@ const appTranslations = {
 
         // Steps
         step1Title: 'Navigate and Define Area',
-        step1Text: 'Use search, draw with <strong>Pencil (✏️)</strong>, upload or test with sample area. <span style="color:var(--accent-yellow); font-size:0.75rem;">Limit: 10,000 ha.</span>',
+        step1Text: 'Use search, draw with <strong>Pencil</strong>, upload or test with sample area. <span style="color:var(--accent-yellow); font-size:0.75rem;">Limit: 10,000 ha.</span>',
         step2Title: 'Automatic Validation',
         step2Text: 'Click <strong>Validate Area</strong> for instant cross-check with 6 official databases (PRODES, MapBiomas, Indigenous Lands, Embargoes, Conservation Units, Quilombola).',
         step3Title: 'PDF Report',
@@ -244,15 +250,11 @@ const appTranslations = {
         pdfLangEn: 'English',
 
         // Messages
-        sampleLoaded: '✨ Sample area loaded! Click "Validate Area" to test without API Key.',
+        sampleLoaded: 'Sample area loaded! Click "Validate Area" to test without API Key.',
         clearHistoryConfirm: 'Clear history?',
         areaFileName: 'Sample Area (Sinop, MT) - Free validation',
-        overlapLabel: '📍 Affected Area:',
+        overlapLabel: 'Affected Area:',
 
-        // Validation results
-        statusApproved: 'APPROVED',
-        statusRejected: 'REJECTED',
-        statusWarning: 'WARNING',
         statusProcessing: 'Validating...',
 
         // Check items
@@ -268,7 +270,7 @@ const appTranslations = {
         // Sidebar cards
         authTitle: 'Authentication',
         apiKeyPlaceholder: 'Paste your API Key',
-        apiKeyRequired: '✨ Explore the map for free! API Key required only to validate your areas.',
+        apiKeyRequired: 'Explore the map for free! API Key required only to validate your areas.',
         getApiKey: 'Get your key:',
         getApiKeyFree: 'Get Free API Key',
 
@@ -284,7 +286,7 @@ const appTranslations = {
         instantApiKey: 'Instant API key',
 
         // Toast messages
-        apiKeyRequiredToast: '⚠️ API Key required.',
+        apiKeyRequiredToast: 'API Key required.',
         getApiKeyLink: 'Get Free API Key →',
         uploadTitle: 'File Upload',
         uploadText: 'Tap to select',
@@ -303,7 +305,7 @@ const appTranslations = {
         historyEmpty: 'No validations yet',
         fillFarmPlot: 'Fill in Farm and Plot',
         insertApiKey: 'Insert your API Key to generate PDF',
-        pdfGenerating: '⏳ Generating...',
+        pdfGenerating: 'Generating...',
         pdfError: 'Error generating PDF',
         pdfSuccess: 'PDF generated successfully!',
         errorUpload: 'Error: ',
@@ -367,12 +369,22 @@ const appTranslations = {
         msg_no_overlap_uc: 'No overlap with Conservation Unit',
 
         // PDF Modal - Privacy tip
-        privacyTipTitle: '💡 Privacy Tip:',
+        privacyTipTitle: 'Privacy Tip:',
         privacyTipText: 'Use internal identifiers (e.g., "Farm #12345") instead of real names. Property names appear in the PDF report but are redacted in public verification.',
-        reportIncludesQr: '📱 Report will include QR Code for authenticity verification',
+        reportIncludesQr: 'Report will include QR Code for authenticity verification',
+
+        // Error messages
+        rateLimitMessage: 'Please wait {seconds} seconds between validations',
+        error_quota_exceeded: 'Validation quota exceeded.',
+        error_quota_contact: 'Request increase →',
+        error_invalid_key: 'Invalid or expired API Key.',
+        error_invalid_geometry: 'Invalid geometry. Redraw the polygon.',
+        error_server: 'Server error. Please try again shortly.',
+        error_generic: 'Unexpected error. Please try again.',
+        error_connection: 'Connection error. Check your internet.',
 
         // Validation loading steps
-        validatingSampleArea: '🎯 Validating sample area (no API Key). For your real areas, get a key.',
+        validatingSampleArea: 'Validating sample area (no API Key). For your real areas, get a key.',
         stepAnalyzingProdes: 'Analyzing PRODES...',
         stepCheckingMapbiomas: 'Checking MapBiomas...',
         stepConsultingTi: 'Consulting Indigenous Lands...',
