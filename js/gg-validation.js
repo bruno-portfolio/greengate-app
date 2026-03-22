@@ -31,7 +31,21 @@
             'terra_indigena': GG.t('layer_terra_indigena'),
             'uc': GG.t('layer_uc'),
             'quilombola': GG.t('layer_quilombola'),
-            'mapbiomas': GG.t('layer_mapbiomas')
+            'mapbiomas': GG.t('layer_mapbiomas'),
+            'mapbiomas_alerta': GG.t('layer_mapbiomas'),
+            'deter': GG.t('layer_deter'),
+            'queimadas': GG.t('layer_queimadas'),
+            'ana': GG.t('layer_hidrografia'),
+            'ana_hidrografia': GG.t('layer_hidrografia'),
+            'ana_pivos': GG.t('layer_pivos'),
+            'sfb': GG.t('layer_floresta_publica'),
+            'sfb_cnfp': GG.t('layer_floresta_publica'),
+            'sfb_concessoes': GG.t('layer_concessao_florestal'),
+            'sicar': GG.t('layer_sicar'),
+            'funai': GG.t('layer_terra_indigena'),
+            'ibama': GG.t('layer_embargo_ibama'),
+            'incra': GG.t('layer_quilombola'),
+            'icmbio': GG.t('layer_uc')
         };
 
         content.textContent = '';

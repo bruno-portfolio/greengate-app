@@ -105,11 +105,18 @@
     function fmtCheckType(c) {
         var mapping = {
             deforestation_prodes: t('check_deforestation_prodes'),
+            deforestation_deter: t('check_deforestation_deter'),
             deforestation_mapbiomas: t('check_deforestation_mapbiomas'),
             terra_indigena: t('check_terra_indigena'),
             embargo_ibama: t('check_embargo_ibama'),
             quilombola: t('check_quilombola'),
             uc: t('check_uc'),
+            queimadas: t('check_queimadas'),
+            app_hidrografia: t('check_app_hidrografia'),
+            floresta_publica: t('check_floresta_publica'),
+            concessao_florestal: t('check_concessao_florestal'),
+            sicar_status: t('check_sicar_status'),
+            pivos_irrigacao: t('check_pivos_irrigacao'),
             app_water: t('check_app_water'),
             legal_amazon: t('check_legal_amazon')
         };

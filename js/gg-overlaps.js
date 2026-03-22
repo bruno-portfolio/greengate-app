@@ -7,22 +7,36 @@
 
     var overlapColors = {
         'deforestation_prodes': [239, 68, 68, 0.5],
+        'deforestation_deter': [251, 146, 60, 0.5],
         'deforestation_mapbiomas': [239, 68, 68, 0.5],
         'terra_indigena': [168, 85, 247, 0.5],
         'quilombola': [168, 85, 247, 0.5],
         'embargo_ibama': [239, 68, 68, 0.5],
         'uc': [245, 158, 11, 0.5],
-        'app_water': [59, 130, 246, 0.5]
+        'queimadas': [251, 146, 60, 0.5],
+        'app_hidrografia': [59, 130, 246, 0.5],
+        'app_water': [59, 130, 246, 0.5],
+        'floresta_publica': [34, 197, 94, 0.5],
+        'concessao_florestal': [34, 197, 94, 0.5],
+        'sicar_status': [156, 163, 175, 0.5],
+        'pivos_irrigacao': [6, 182, 212, 0.5]
     };
 
     var overlapBorderColors = {
         'deforestation_prodes': [239, 68, 68],
+        'deforestation_deter': [251, 146, 60],
         'deforestation_mapbiomas': [239, 68, 68],
         'terra_indigena': [168, 85, 247],
         'quilombola': [168, 85, 247],
         'embargo_ibama': [239, 68, 68],
         'uc': [245, 158, 11],
-        'app_water': [59, 130, 246]
+        'queimadas': [251, 146, 60],
+        'app_hidrografia': [59, 130, 246],
+        'app_water': [59, 130, 246],
+        'floresta_publica': [34, 197, 94],
+        'concessao_florestal': [34, 197, 94],
+        'sicar_status': [156, 163, 175],
+        'pivos_irrigacao': [6, 182, 212]
     };
 
     function drawOverlapPolygon(rings, fillColor, borderColor, name, overlapHa, idx) {

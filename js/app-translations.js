@@ -123,20 +123,34 @@ const appTranslations = {
 
         // Check names
         check_deforestation_prodes: 'Desmatamento PRODES',
+        check_deforestation_deter: 'Alertas DETER',
         check_deforestation_mapbiomas: 'Alertas MapBiomas',
         check_terra_indigena: 'Terras Indígenas',
         check_quilombola: 'Territórios Quilombolas',
         check_uc: 'Unidades de Conservação',
         check_embargo_ibama: 'Embargos IBAMA',
+        check_queimadas: 'Queimadas',
+        check_app_hidrografia: 'APP Hidrografia',
+        check_floresta_publica: 'Floresta Pública',
+        check_concessao_florestal: 'Concessão Florestal',
+        check_sicar_status: 'CAR/SICAR',
+        check_pivos_irrigacao: 'Pivôs de Irrigação',
         check_app_water: 'APP (Água)',
         check_legal_amazon: 'Amazônia Legal',
 
         // Layer names (data freshness)
         layer_prodes: 'PRODES (Desmatamento)',
+        layer_deter: 'DETER (Alertas)',
         layer_embargo_ibama: 'Embargos IBAMA',
         layer_terra_indigena: 'Terras Indígenas',
         layer_uc: 'Unidades de Conservação',
         layer_quilombola: 'Territórios Quilombolas',
+        layer_queimadas: 'Queimadas',
+        layer_hidrografia: 'Hidrografia (APP)',
+        layer_floresta_publica: 'Floresta Pública',
+        layer_concessao_florestal: 'Concessão Florestal',
+        layer_sicar: 'CAR/SICAR',
+        layer_pivos: 'Pivôs de Irrigação',
         layer_mapbiomas: 'MapBiomas',
 
         // Time expressions
@@ -319,21 +333,35 @@ const appTranslations = {
 
         // Check names
         check_deforestation_prodes: 'PRODES Deforestation',
+        check_deforestation_deter: 'DETER Alerts',
         check_deforestation_mapbiomas: 'MapBiomas Alerts',
         check_terra_indigena: 'Indigenous Lands',
         check_quilombola: 'Quilombola Territories',
         check_uc: 'Conservation Units',
         check_embargo_ibama: 'IBAMA Embargoes',
+        check_queimadas: 'Fire Hotspots',
+        check_app_hidrografia: 'Riparian Buffer (APP)',
+        check_floresta_publica: 'Public Forests',
+        check_concessao_florestal: 'Forest Concessions',
+        check_sicar_status: 'CAR/SICAR',
+        check_pivos_irrigacao: 'Irrigation Pivots',
         check_app_water: 'APP (Water)',
         check_legal_amazon: 'Legal Amazon',
 
         // Layer names (data freshness)
         layer_prodes: 'PRODES (Deforestation)',
+        layer_deter: 'DETER (Alerts)',
         layer_embargo_ibama: 'IBAMA Embargoes',
         layer_terra_indigena: 'Indigenous Lands',
         layer_uc: 'Conservation Units',
         layer_quilombola: 'Quilombola Territories',
         layer_mapbiomas: 'MapBiomas',
+        layer_queimadas: 'Fire Hotspots',
+        layer_hidrografia: 'Hydrography (APP)',
+        layer_floresta_publica: 'Public Forests',
+        layer_concessao_florestal: 'Forest Concessions',
+        layer_sicar: 'CAR/SICAR',
+        layer_pivos: 'Irrigation Pivots',
 
         // Time expressions
         timeToday: 'Today',
