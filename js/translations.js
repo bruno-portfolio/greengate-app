@@ -56,22 +56,42 @@ const translations = {
         src6_name: 'Amazônia Legal',
         src6_desc: 'Área sujeita a legislação ambiental especial',
 
+        // Evidence badge
+        evidence_badge: 'Integrado',
+
         // Methodology
         method_label: 'Como funciona',
         method_title: 'Fluxo de validação',
+        method_desc: 'Envie uma geometria, receba o diagnóstico ambiental completo. Três passos, zero ambiguidade.',
         method_process: 'Processamento',
         method_process_desc: 'PostGIS + 6 camadas',
         method_output_desc: 'JSON + PDF auditável',
+        method_step1_label: 'Passo 01',
+        method_step1_title: 'Envie a geometria',
+        method_step1_detail: 'Desenhe no mapa, faça upload de GeoJSON ou envie via API REST.',
+        method_step2_label: 'Passo 02',
+        method_step2_title: 'Cruzamento automático',
+        method_step2_detail: 'PostGIS cruza contra 6 bases oficiais simultaneamente.',
+        method_step3_label: 'Passo 03',
+        method_step3_title: 'Resultado + Relatório',
+        method_step3_detail: 'JSON com status de cada camada + PDF auditável com QR Code.',
 
         // CTA
         cta_title: 'Valide sua área agora',
         cta_desc: 'Resultado em menos de 2 minutos. Sem cartão de crédito para começar.',
         cta_primary: 'Começar agora',
         cta_contact: 'Contato',
+        cta_preview_title: 'Validação Completa',
+        cta_preview_status: 'Conforme',
+        cta_preview_pdf: 'Baixar PDF',
 
         // Footer
         footer_privacy: 'Privacidade',
         footer_terms: 'Termos',
+        footer_tagline: 'Validação geoespacial ambiental',
+        trust_encryption: 'Criptografia AES-256',
+        trust_hosting: 'Dados hospedados no Brasil',
+        trust_audit: 'Trilha de auditoria completa',
         footer_copy: '\u00a9 2026 GreenGate. Todos os direitos reservados.'
     },
     en: {
@@ -131,22 +151,42 @@ const translations = {
         src6_name: 'Legal Amazon',
         src6_desc: 'Area subject to special environmental legislation',
 
+        // Evidence badge
+        evidence_badge: 'Integrated',
+
         // Methodology
         method_label: 'How it works',
         method_title: 'Validation flow',
+        method_desc: 'Submit a geometry, receive the full environmental diagnosis. Three steps, zero ambiguity.',
         method_process: 'Processing',
         method_process_desc: 'PostGIS + 6 layers',
         method_output_desc: 'JSON + auditable PDF',
+        method_step1_label: 'Step 01',
+        method_step1_title: 'Submit geometry',
+        method_step1_detail: 'Draw on the map, upload GeoJSON, or send via REST API.',
+        method_step2_label: 'Step 02',
+        method_step2_title: 'Automated cross-check',
+        method_step2_detail: 'PostGIS cross-checks against 6 official databases simultaneously.',
+        method_step3_label: 'Step 03',
+        method_step3_title: 'Result + Report',
+        method_step3_detail: 'JSON with each layer status + auditable PDF with QR Code.',
 
         // CTA
         cta_title: 'Validate your area now',
         cta_desc: 'Results in under 2 minutes. No credit card required to start.',
         cta_primary: 'Get started',
         cta_contact: 'Contact',
+        cta_preview_title: 'Validation Complete',
+        cta_preview_status: 'Clear',
+        cta_preview_pdf: 'Download PDF',
 
         // Footer
         footer_privacy: 'Privacy',
         footer_terms: 'Terms',
+        footer_tagline: 'Geospatial environmental validation',
+        trust_encryption: 'AES-256 Encryption',
+        trust_hosting: 'Data hosted in Brazil',
+        trust_audit: 'Full audit trail',
         footer_copy: '\u00a9 2026 GreenGate. All rights reserved.'
     }
 };
