@@ -27,7 +27,7 @@ const appTranslations = {
         step1Title: 'Navegue e Defina a Área',
         step1Text: 'Use a busca, desenhe com o <strong>Lápis</strong>, faça upload ou teste com área de exemplo. <span style="color:var(--accent-yellow); font-size:0.75rem;">Limite: 10.000 ha.</span>',
         step2Title: 'Validação Automática',
-        step2Text: 'Clique em <strong>Validar Área</strong> para cruzamento instantâneo com 6 bases oficiais (PRODES, MapBiomas, TIs, Embargos, UCs, Quilombolas).',
+        step2Text: 'Clique em <strong>Validar Área</strong> para cruzamento instantâneo com 13 bases oficiais (PRODES, DETER, MapBiomas, TIs, Embargos, UCs, Queimadas, etc).',
         step3Title: 'Relatório PDF',
         step3Text: 'Baixe o relatório profissional com mapas, verificações detalhadas e QR Code de autenticidade. <strong>Requer API Key</strong>.',
 
@@ -237,7 +237,7 @@ const appTranslations = {
         step1Title: 'Navigate and Define Area',
         step1Text: 'Use search, draw with <strong>Pencil</strong>, upload or test with sample area. <span style="color:var(--accent-yellow); font-size:0.75rem;">Limit: 10,000 ha.</span>',
         step2Title: 'Automatic Validation',
-        step2Text: 'Click <strong>Validate Area</strong> for instant cross-check with 6 official databases (PRODES, MapBiomas, Indigenous Lands, Embargoes, Conservation Units, Quilombola).',
+        step2Text: 'Click <strong>Validate Area</strong> for instant cross-check with 13 official databases (PRODES, DETER, MapBiomas, Indigenous Lands, Embargoes, Fire Hotspots, etc).',
         step3Title: 'PDF Report',
         step3Text: 'Download professional report with maps, detailed checks and authenticity QR Code. <strong>Requires API Key</strong>.',
 
