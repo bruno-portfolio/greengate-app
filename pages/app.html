@@ -987,7 +987,7 @@
     'use strict';
 
     // Global translation helper (app-translations.js sets window.getAppTranslation)
-    function t(key) { return t(key) : key; }
+    function t(key) { return window.getAppTranslation ? window.getAppTranslation(key) : key; }
 
     const API_URL = 'https://api.greengate.com.br';
     const MAX_HISTORY = 5;
