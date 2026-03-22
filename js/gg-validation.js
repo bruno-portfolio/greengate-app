@@ -102,10 +102,6 @@
             GG.overlapsLayer.removeAll();
         }
 
-        if (d.data_freshness) {
-            displayDataFreshness(d.data_freshness);
-        }
-
         document.getElementById('resultCard').classList.add('show');
         document.getElementById('resultBanner').className = 'result-banner ' + d.status;
 
